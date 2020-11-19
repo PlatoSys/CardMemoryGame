@@ -12,7 +12,7 @@ let checkOpened = 0;
 let scoreMax = 0;
 let setTimer;
 let Time;
-let Times = { "2x2": 1, "3x4": 30, "4x4": 50 , "4x5": 80}; 
+let Times = { "2x2": 4, "3x4": 25, "4x4": 30 , "4x5": 40}; 
 
 FinishedDiv.id = "finish";
 StartAgainText.innerHTML = "You Won!!";
@@ -45,6 +45,9 @@ async function startTime() {
     let Elements = document.querySelectorAll('.elementDiv');
     Elements.forEach(item => {
         item.addEventListener('click', event => {
+            var audio = new Audio("CardFlip.mp3");
+            audio.play();
+
             item.firstChild.style.transform = 'rotateY(180deg)';
             item.setAttribute('display', true);
             var matches = document.querySelectorAll("div[display='true']");
@@ -63,7 +66,8 @@ async function startTime() {
 function rotateBack(elements){
     
     if(elements[0].firstChild.lastChild.innerHTML == elements[1].firstChild.lastChild.innerHTML){
-        
+        var audio = new Audio("Discard.mp3");
+        audio.play();
         elements[0].classList.remove('elementDiv');
         elements[0].style.opacity = 0;
         elements[1].classList.remove('elementDiv');
